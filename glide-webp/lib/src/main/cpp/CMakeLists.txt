@@ -5,7 +5,8 @@ project(signal-webp)
 add_compile_options(-Oz)
 set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 
-set(BUILD_SHARED_LIBS ON)
+set(BUILD_SHARED_LIBS OFF)
+set(WEBP_LINK_STATIC ON)
 set(WEBP_BUILD_ANIM_UTILS OFF)
 set(WEBP_BUILD_CWEBP OFF)
 set(WEBP_BUILD_DWEBP OFF)
@@ -23,3 +24,6 @@ add_library(signalwebp SHARED ${SOURCES})
 target_include_directories(signalwebp PRIVATE ${LIBWEBP_PATH}/src)
 find_library(androidlog log)
 target_link_libraries(signalwebp webpdemux ${androidlog})
+
+# Hide symbols from statically-linked dependencies
+set_target_properties(signalwebp PROPERTIES LINK_FLAGS "-Wl,--exclude-libs,ALL")
