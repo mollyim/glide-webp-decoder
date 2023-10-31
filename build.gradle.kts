@@ -5,5 +5,5 @@ plugins {
 
 allprojects {
   group = "im.molly"
-  version = "1.3.2-1"
+  version = "1.3.2-2"
 }
